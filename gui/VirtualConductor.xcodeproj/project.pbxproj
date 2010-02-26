@@ -12,6 +12,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9BF7E1541137BB4000E67AC2 /* liblo_s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF7E1531137BB4000E67AC2 /* liblo_s.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* VirtualConductor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "VirtualConductor-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* VirtualConductor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualConductor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BF7E1531137BB4000E67AC2 /* liblo_s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo_s.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				9BF7E1541137BB4000E67AC2 /* liblo_s.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +103,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9BF7E1531137BB4000E67AC2 /* liblo_s.a */,
 				8D1107310486CEB800E47090 /* VirtualConductor-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -211,6 +215,10 @@
 				GCC_PREFIX_HEADER = VirtualConductor_Prefix.pch;
 				INFOPLIST_FILE = "VirtualConductor-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = VirtualConductor;
 			};
 			name = Debug;
@@ -225,6 +233,10 @@
 				GCC_PREFIX_HEADER = VirtualConductor_Prefix.pch;
 				INFOPLIST_FILE = "VirtualConductor-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = VirtualConductor;
 			};
 			name = Release;
