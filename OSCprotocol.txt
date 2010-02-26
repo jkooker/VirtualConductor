@@ -1,0 +1,24 @@
+VirtualConductor OSC Protocol
+-----------------------------
+
+MESSAGES RECEIVED BY Pd
+
+/vcon/orientation [angle (deg)]
+/vcon/volume [channel index] [level (percent)]
+
+EXAMPLES
+
+/vcon/orientation 180
+/vcon/volume 2 80
+
+-----
+
+MESSAGES RECEIVED BY GUI
+
+/vcon/head [angle (deg)]
+/vcon/gesture [id]
+
+EXAMPLES
+
+/vcon/head 45
+/vcon/gesture 4
