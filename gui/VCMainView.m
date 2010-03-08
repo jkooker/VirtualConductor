@@ -14,6 +14,7 @@
 - (void)awakeFromNib
 {
     [self.window makeFirstResponder:self];
+    [self.window setAcceptsMouseMovedEvents:YES];
 }
 
 - (IBAction)fullScreen:(id)sender
@@ -37,8 +38,13 @@
 - (void)keyUp:(NSEvent *)theEvent
 {
     NSLog(@"keyUp!");
-    
     [super keyUp:theEvent];
+}
+
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    NSLog(@"mouseMoved!");
+    [super mouseMoved:theEvent];
 }
 
 @end
