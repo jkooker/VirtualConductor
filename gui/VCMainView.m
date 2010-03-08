@@ -35,15 +35,40 @@
 
 }
 
+#pragma mark Event Handling
+
 - (void)keyUp:(NSEvent *)theEvent
 {
-    NSLog(@"keyUp!");
+    //NSLog(@"keyUp with characters %@!", [theEvent characters]);
+    
+    if ([[theEvent characters] isEqualToString:@"a"]) {
+        [appController handleGesture:1];
+    }
+    if ([[theEvent characters] isEqualToString:@"s"]) {
+        [appController handleGesture:2];
+    }
+    if ([[theEvent characters] isEqualToString:@"d"]) {
+        [appController handleGesture:3];
+    }
+    if ([[theEvent characters] isEqualToString:@"f"]) {
+        [appController handleGesture:4];
+    }
+
     [super keyUp:theEvent];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-    NSLog(@"mouseMoved!");
+    //NSLog(@"mouseMoved to (%.0f, %.0f)!", [NSEvent mouseLocation].x, [NSEvent mouseLocation].y);
+    
+    CGFloat width = [[self.window screen] frame].size.width;
+    CGFloat x = [NSEvent mouseLocation].x;
+    
+    // Left edge of screen is -45 degrees, right side is 45
+    NSInteger angle = (x - width/2)/(width/2) * 45;
+    
+    [appController handleHeadOrientation:angle];
+    
     [super mouseMoved:theEvent];
 }
 

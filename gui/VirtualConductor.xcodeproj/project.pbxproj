@@ -13,6 +13,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9B93C9B0114473E1000C4C56 /* VCMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B93C9AF114473E1000C4C56 /* VCMainView.m */; };
+		9B93C9EE11448184000C4C56 /* VCAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B93C9ED11448184000C4C56 /* VCAppController.m */; };
 		9BF7E1541137BB4000E67AC2 /* liblo_s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF7E1531137BB4000E67AC2 /* liblo_s.a */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,8 @@
 		8D1107320486CEB800E47090 /* VirtualConductor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualConductor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B93C9AE114473E1000C4C56 /* VCMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCMainView.h; sourceTree = "<group>"; };
 		9B93C9AF114473E1000C4C56 /* VCMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCMainView.m; sourceTree = "<group>"; };
+		9B93C9EC11448184000C4C56 /* VCAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCAppController.h; sourceTree = "<group>"; };
+		9B93C9ED11448184000C4C56 /* VCAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCAppController.m; sourceTree = "<group>"; };
 		9BF7E1531137BB4000E67AC2 /* liblo_s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo_s.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +55,8 @@
 			children = (
 				256AC3D80F4B6AC300CF3369 /* VirtualConductorAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* VirtualConductorAppDelegate.m */,
+				9B93C9EC11448184000C4C56 /* VCAppController.h */,
+				9B93C9ED11448184000C4C56 /* VCAppController.m */,
 				9B93C9AE114473E1000C4C56 /* VCMainView.h */,
 				9B93C9AF114473E1000C4C56 /* VCMainView.m */,
 			);
@@ -183,6 +188,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* VirtualConductorAppDelegate.m in Sources */,
 				9B93C9B0114473E1000C4C56 /* VCMainView.m in Sources */,
+				9B93C9EE11448184000C4C56 /* VCAppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

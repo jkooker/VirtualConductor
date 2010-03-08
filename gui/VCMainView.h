@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "VCAppController.h"
 
 @interface VCMainView : NSView {
-
+    IBOutlet VCAppController *appController;
 }
 
 - (IBAction)fullScreen:(id)sender;
