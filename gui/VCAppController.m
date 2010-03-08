@@ -24,7 +24,7 @@
     
     // Fake gestures into volume controls
     float newVolume = ((float)gestureID - 1) / 3 * 100;
-    lo_send(oscPd, "/volume", "if", 1, newVolume);
+    lo_send(oscPd, "/vcon/volume", "if", 1, newVolume);
 }
 
 - (void)handleHeadOrientation:(NSInteger)angle
@@ -32,7 +32,7 @@
     NSLog(@"handleHeadOrientation %d", angle);
     
     // Need to implement constant motion, but this will do for now.
-    lo_send(oscPd, "/orientation", "i", angle);
+    lo_send(oscPd, "/vcon/orientation", "i", angle);
 }
 
 @end
