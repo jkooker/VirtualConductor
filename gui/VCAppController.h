@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "lo/lo.h"
 
 
 @interface VCAppController : NSObject {
-
+    lo_address oscPd;
 }
 
 - (void)handleGesture:(NSInteger)gestureID;
