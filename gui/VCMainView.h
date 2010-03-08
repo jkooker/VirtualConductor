@@ -13,8 +13,6 @@
 
 }
 
-@property BOOL isFullScreen;
-
 - (IBAction)fullScreen:(id)sender;
 
 @end

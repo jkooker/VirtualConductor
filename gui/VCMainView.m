@@ -11,16 +11,14 @@
 
 @implementation VCMainView
 
-@synthesize isFullScreen;
-
 - (void)awakeFromNib
 {
-    self.isFullScreen = NO;
+    [self.window makeFirstResponder:self];
 }
 
 - (IBAction)fullScreen:(id)sender
-{
-    if (!self.isFullScreen) {
+{    
+    if (![self isInFullScreenMode]) {
         // go full screen, as a kiosk application 
         [self enterFullScreenMode:[self.window screen] withOptions:nil];
         
@@ -29,14 +27,18 @@
             
         // bring the window to the front
         [self.window makeKeyAndOrderFront:self];
-        
-        self.isFullScreen = YES;
     } else {
         [self exitFullScreenModeWithOptions:nil];
-        
-        self.isFullScreen = NO;
+        [self.window makeFirstResponder:self];
     }
 
+}
+
+- (void)keyUp:(NSEvent *)theEvent
+{
+    NSLog(@"keyUp!");
+    
+    [super keyUp:theEvent];
 }
 
 @end
