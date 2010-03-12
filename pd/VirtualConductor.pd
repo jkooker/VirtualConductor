@@ -1,4 +1,4 @@
-#N canvas 614 122 517 546 10;
+#N canvas 702 36 517 546 10;
 #X obj 330 149 readsf~;
 #N canvas 467 149 618 513 oscrouting 0;
 #X obj 40 265 route squarewave vcf lfo;
@@ -138,22 +138,24 @@
 #X msg 52 51 bang;
 #X msg 247 120 read -resize audio/piano.aif inst1;
 #X obj 104 131 r orientation;
-#X obj 257 244 hsl 128 15 0 360 0 0 empty empty empty -2 -8 0 10 -262144
+#X obj 257 244 hsl 128 15 0 360 0 1 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 255 274 s orientation;
 #X floatatom 138 166 5 0 0 0 - - -;
-#X obj 53 160 VCdirect~;
 #X obj 246 95 loadbang;
 #X obj 54 209 dac~ 1 2 3 4;
+#X text 250 223 0;
+#X text 380 225 360;
+#X obj 53 160 VCdirect~;
 #X connect 2 0 3 0;
-#X connect 7 0 14 0;
+#X connect 7 0 18 0;
 #X connect 8 0 7 0;
 #X connect 9 0 6 0;
 #X connect 10 0 13 0;
-#X connect 10 0 14 1;
+#X connect 10 0 18 1;
 #X connect 11 0 12 0;
-#X connect 14 0 16 0;
-#X connect 14 1 16 1;
-#X connect 14 2 16 2;
-#X connect 14 3 16 3;
-#X connect 15 0 9 0;
+#X connect 14 0 9 0;
+#X connect 18 0 15 0;
+#X connect 18 1 15 1;
+#X connect 18 2 15 2;
+#X connect 18 3 15 3;
