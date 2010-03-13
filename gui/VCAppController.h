@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "lo/lo.h"
-
+#import "VCInstrumentView.h"
 
 @interface VCAppController : NSObject {
     lo_address oscPd;
+    IBOutlet VCInstrumentView *instrumentView;
 }
 
 - (void)handleGesture:(NSInteger)gestureID;

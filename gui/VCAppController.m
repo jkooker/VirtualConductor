@@ -33,6 +33,10 @@
     
     // Need to implement constant motion, but this will do for now.
     lo_send(oscPd, "/vcon/orientation", "i", angle);
+    
+    // Move instrument view with head orientation
+    [instrumentView setFrameOrigin:NSMakePoint([[instrumentView superview] bounds].size.width / 2 + angle,
+        [instrumentView frame].origin.y)];
 }
 
 @end
