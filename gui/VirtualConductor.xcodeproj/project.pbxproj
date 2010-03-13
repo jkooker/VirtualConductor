@@ -14,6 +14,11 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9B93C9B0114473E1000C4C56 /* VCMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B93C9AF114473E1000C4C56 /* VCMainView.m */; };
 		9B93C9EE11448184000C4C56 /* VCAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B93C9ED11448184000C4C56 /* VCAppController.m */; };
+		9BA2A0FE114C3BA50090A567 /* VCInstrumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2A0FD114C3BA50090A567 /* VCInstrumentView.m */; };
+		9BA2A10D114C3D260090A567 /* crowd.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2A109114C3D260090A567 /* crowd.gif */; };
+		9BA2A10E114C3D260090A567 /* drums.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2A10A114C3D260090A567 /* drums.jpg */; };
+		9BA2A10F114C3D260090A567 /* guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2A10B114C3D260090A567 /* guitar.jpg */; };
+		9BA2A110114C3D260090A567 /* vox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2A10C114C3D260090A567 /* vox.jpg */; };
 		9BF7E1541137BB4000E67AC2 /* liblo_s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF7E1531137BB4000E67AC2 /* liblo_s.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +39,12 @@
 		9B93C9AF114473E1000C4C56 /* VCMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCMainView.m; sourceTree = "<group>"; };
 		9B93C9EC11448184000C4C56 /* VCAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCAppController.h; sourceTree = "<group>"; };
 		9B93C9ED11448184000C4C56 /* VCAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCAppController.m; sourceTree = "<group>"; };
+		9BA2A0FC114C3BA50090A567 /* VCInstrumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCInstrumentView.h; sourceTree = "<group>"; };
+		9BA2A0FD114C3BA50090A567 /* VCInstrumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCInstrumentView.m; sourceTree = "<group>"; };
+		9BA2A109114C3D260090A567 /* crowd.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = crowd.gif; sourceTree = "<group>"; };
+		9BA2A10A114C3D260090A567 /* drums.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = drums.jpg; sourceTree = "<group>"; };
+		9BA2A10B114C3D260090A567 /* guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guitar.jpg; sourceTree = "<group>"; };
+		9BA2A10C114C3D260090A567 /* vox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vox.jpg; sourceTree = "<group>"; };
 		9BF7E1531137BB4000E67AC2 /* liblo_s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo_s.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +68,8 @@
 				256AC3D90F4B6AC300CF3369 /* VirtualConductorAppDelegate.m */,
 				9B93C9EC11448184000C4C56 /* VCAppController.h */,
 				9B93C9ED11448184000C4C56 /* VCAppController.m */,
+				9BA2A0FC114C3BA50090A567 /* VCInstrumentView.h */,
+				9BA2A0FD114C3BA50090A567 /* VCInstrumentView.m */,
 				9B93C9AE114473E1000C4C56 /* VCMainView.h */,
 				9B93C9AF114473E1000C4C56 /* VCMainView.m */,
 			);
@@ -113,6 +126,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9BA2A108114C3D260090A567 /* images */,
 				9BF7E1531137BB4000E67AC2 /* liblo_s.a */,
 				8D1107310486CEB800E47090 /* VirtualConductor-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -128,6 +142,17 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9BA2A108114C3D260090A567 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9BA2A109114C3D260090A567 /* crowd.gif */,
+				9BA2A10A114C3D260090A567 /* drums.jpg */,
+				9BA2A10B114C3D260090A567 /* guitar.jpg */,
+				9BA2A10C114C3D260090A567 /* vox.jpg */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +200,10 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				9BA2A10D114C3D260090A567 /* crowd.gif in Resources */,
+				9BA2A10E114C3D260090A567 /* drums.jpg in Resources */,
+				9BA2A10F114C3D260090A567 /* guitar.jpg in Resources */,
+				9BA2A110114C3D260090A567 /* vox.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +218,7 @@
 				256AC3DA0F4B6AC300CF3369 /* VirtualConductorAppDelegate.m in Sources */,
 				9B93C9B0114473E1000C4C56 /* VCMainView.m in Sources */,
 				9B93C9EE11448184000C4C56 /* VCAppController.m in Sources */,
+				9BA2A0FE114C3BA50090A567 /* VCInstrumentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
