@@ -31,6 +31,9 @@
 {
     NSLog(@"handleHeadOrientation %d", angle);
     
+    // Update orientation indicator
+    [orientationIndicator setIntValue:angle];
+    
     // Need to implement constant motion, but this will do for now.
     lo_send(oscPd, "/vcon/orientation", "i", angle);
     
