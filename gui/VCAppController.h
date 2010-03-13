@@ -12,7 +12,10 @@
 
 @interface VCAppController : NSObject {
     lo_address oscPd;
-    IBOutlet VCInstrumentView *instrumentView;
+    IBOutlet VCInstrumentView *guitarView;
+    IBOutlet VCInstrumentView *drumsView;
+    IBOutlet VCInstrumentView *voxView;
+    IBOutlet VCInstrumentView *crowdView;
 }
 
 - (void)handleGesture:(NSInteger)gestureID;

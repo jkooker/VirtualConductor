@@ -35,8 +35,8 @@
     lo_send(oscPd, "/vcon/orientation", "i", angle);
     
     // Move instrument view with head orientation
-    [instrumentView setFrameOrigin:NSMakePoint([[instrumentView superview] bounds].size.width / 2 + angle,
-        [instrumentView frame].origin.y)];
+    [guitarView setFrameOrigin:NSMakePoint([[guitarView superview] bounds].size.width / 2 + angle,
+        [guitarView frame].origin.y)];
 }
 
 @end
