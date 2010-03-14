@@ -25,6 +25,11 @@
     volumes[3] = 100;
     
     instrumentViews = [[NSArray alloc] initWithObjects:guitarView, voxView, drumsView, crowdView, nil];
+    
+    instrumentOffsets[0] = 0;
+    instrumentOffsets[1] = 90;
+    instrumentOffsets[2] = 180;
+    instrumentOffsets[3] = 270;    
 }
 
 - (void)handleGesture:(NSInteger)gestureID
@@ -98,6 +103,29 @@
     lo_send(oscPd, "/vcon/volume", "if", 2, volumes[1]);
     lo_send(oscPd, "/vcon/volume", "if", 3, volumes[2]);
     lo_send(oscPd, "/vcon/volume", "if", 4, volumes[3]);
+}
+
+- (void)updateInstrumentPositions
+{
+    // do main frame calculations
+    CGFloat center = [[guitarView superview] bounds].size.width / 2;
+    
+    for (NSUInteger i = 0; i < kInstrumentCount; i++) {
+        // calculate offset position
+        NSInteger position = (orientation + instrumentOffsets[i]) % 360;
+        if (position > 180) position -= 360; // now [-180, 180]
+        
+        CGFloat newFrameCenter = center + (position/45) * center;
+        
+        VCInstrumentView *iView = [instrumentViews objectAtIndex:i];
+        CGFloat halfInstrumentViewWidth = [iView bounds].size.width / 2;
+        [iView setFrameOrigin:NSMakePoint(newFrameCenter - halfInstrumentViewWidth, [iView frame].origin.y)];
+    }
+}
+
+- (IBAction)doOrientation:(id)sender
+{
+    [self updateInstrumentPositions];
 }
 
 @end

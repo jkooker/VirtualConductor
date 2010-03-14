@@ -17,9 +17,11 @@ enum VCGestures {
     VCGestureSolo
 };
 
+#define kInstrumentCount 4
+
 @interface VCAppController : NSObject {
     lo_address oscPd;
-    
+        
     IBOutlet VCInstrumentView *guitarView;
     IBOutlet VCInstrumentView *drumsView;
     IBOutlet VCInstrumentView *voxView;
@@ -28,13 +30,17 @@ enum VCGestures {
     IBOutlet NSSlider *headIndicator;
     
     NSInteger orientation;
-    NSUInteger volumes[4];
+    NSUInteger volumes[kInstrumentCount];
     NSArray *instrumentViews;
+    NSInteger instrumentOffsets[kInstrumentCount];
 }
 
 - (void)handleGesture:(NSInteger)gestureID;
 - (void)handleHeadAngle:(NSInteger)angle;
 - (void)setOrientation:(NSInteger)angle;
 - (void)sendUpdatesToPd;
+- (void)updateInstrumentPositions;
+
+- (IBAction)doOrientation:(id)sender;
 
 @end
