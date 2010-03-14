@@ -29,6 +29,7 @@ enum VCGestures {
     
     IBOutlet NSSlider *headIndicator;
     
+    NSInteger headAngle;
     NSInteger orientation;
     NSUInteger volumes[kInstrumentCount];
     NSArray *instrumentViews;
@@ -39,10 +40,10 @@ enum VCGestures {
 
 - (void)handleGesture:(NSInteger)gestureID;
 - (void)handleHeadAngle:(NSInteger)angle;
-- (void)setOrientation:(NSInteger)angle;
 - (void)sendUpdatesToPd;
 - (void)updateInstrumentPositions;
 - (void)setActiveInstrumentIndex:(NSUInteger)i;
+- (void)updateWorld:(NSTimer*)theTimer;
 
 - (IBAction)doOrientation:(id)sender;
 

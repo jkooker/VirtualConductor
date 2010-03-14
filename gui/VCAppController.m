@@ -8,6 +8,8 @@
 
 #import "VCAppController.h"
 
+#define kMaxRotationalSpeed 180 // in degrees/sec
+#define kTimerInterval 0.1 // in sec
 
 @implementation VCAppController
 
@@ -18,6 +20,7 @@
     lo_send(oscPd, "/hello", ""); // make the connection
     
     // initialize state variables
+    headAngle = 0;
     orientation = 0;
     volumes[0] = 100;
     volumes[1] = 100;
@@ -32,6 +35,8 @@
     instrumentOffsets[3] = 270;
     
     activeInstrumentIndex = 0;
+    
+    [NSTimer scheduledTimerWithTimeInterval:kTimerInterval target:self selector:@selector(updateWorld:) userInfo:nil repeats:YES];
 }
 
 - (void)handleGesture:(NSInteger)gestureID
@@ -67,22 +72,11 @@
 
 - (void)handleHeadAngle:(NSInteger)angle
 {
-    NSLog(@"handleHeadOrientation %d", angle);
+    //NSLog(@"handleHeadAngle %d", angle);
     
     // Update orientation indicator
     [headIndicator setIntValue:angle];
-    
-    // Need to implement constant motion, but this will do for now.
-    lo_send(oscPd, "/vcon/orientation", "i", angle);
-    
-    // Move instrument view with head orientation
-    [guitarView setFrameOrigin:NSMakePoint([[guitarView superview] bounds].size.width / 2 + angle,
-        [guitarView frame].origin.y)];
-}
-
-- (void)setOrientation:(NSInteger)angle
-{
-    orientation = angle;
+    headAngle = angle;
 }
 
 - (void)setActiveInstrumentIndex:(NSUInteger)i
@@ -95,10 +89,10 @@
 - (void)sendUpdatesToPd
 {
     lo_send(oscPd, "/vcon/orientation", "i", orientation);
-    lo_send(oscPd, "/vcon/volume", "if", 1, volumes[0]);
-    lo_send(oscPd, "/vcon/volume", "if", 2, volumes[1]);
-    lo_send(oscPd, "/vcon/volume", "if", 3, volumes[2]);
-    lo_send(oscPd, "/vcon/volume", "if", 4, volumes[3]);
+    lo_send(oscPd, "/vcon/volume", "ii", 1, volumes[0]);
+    lo_send(oscPd, "/vcon/volume", "ii", 2, volumes[1]);
+    lo_send(oscPd, "/vcon/volume", "ii", 3, volumes[2]);
+    lo_send(oscPd, "/vcon/volume", "ii", 4, volumes[3]);
 }
 
 - (void)updateInstrumentPositions
@@ -121,6 +115,16 @@
         CGFloat halfInstrumentViewWidth = [iView bounds].size.width / 2;
         [iView setFrameOrigin:NSMakePoint(newFrameCenter - halfInstrumentViewWidth, [iView frame].origin.y)];
     }
+}
+
+- (void)updateWorld:(NSTimer*)theTimer
+{
+    // update orientation based on head angle
+    CGFloat orientationChange = ((CGFloat)headAngle / 45) * kTimerInterval * kMaxRotationalSpeed;
+    orientation += orientationChange;
+    
+    [self updateInstrumentPositions];
+    [self sendUpdatesToPd];
 }
 
 - (IBAction)doOrientation:(id)sender
