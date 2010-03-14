@@ -15,6 +15,8 @@
 {
     [self.window makeFirstResponder:self];
     [self.window setAcceptsMouseMovedEvents:YES];
+    
+    backgroundGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.85 alpha:1.0] endingColor:[NSColor colorWithCalibratedWhite:0.2 alpha:1.0]];
 }
 
 - (IBAction)fullScreen:(id)sender
@@ -33,6 +35,10 @@
         [self.window makeFirstResponder:self];
     }
 
+}
+
+- (void)drawRect:(NSRect)rect {
+    [backgroundGradient drawInRect:[self bounds] angle:270];
 }
 
 #pragma mark Event Handling

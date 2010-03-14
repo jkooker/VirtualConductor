@@ -11,6 +11,8 @@
 
 @interface VCMainView : NSView {
     IBOutlet VCAppController *appController;
+    
+    NSGradient *backgroundGradient;
 }
 
 - (IBAction)fullScreen:(id)sender;
