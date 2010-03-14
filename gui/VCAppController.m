@@ -74,7 +74,7 @@
 {
     //NSLog(@"handleHeadAngle %d", angle);
     
-    // Update orientation indicator
+    // Update head angle indicator
     [headIndicator setIntValue:angle];
     headAngle = angle;
 }
@@ -122,6 +122,8 @@
     // update orientation based on head angle
     CGFloat orientationChange = ((CGFloat)headAngle / 45) * kTimerInterval * kMaxRotationalSpeed;
     orientation += orientationChange;
+    orientation = orientation % 360;
+    if (orientation < 0) orientation += 360;
     
     [self updateInstrumentPositions];
     [self sendUpdatesToPd];
