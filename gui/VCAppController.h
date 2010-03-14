@@ -10,6 +10,13 @@
 #import "lo/lo.h"
 #import "VCInstrumentView.h"
 
+enum VCGestures {
+    VCGestureVolumeUp = 1,
+    VCGestureVolumeDown,
+    VCGestureMute,
+    VCGestureSolo
+};
+
 @interface VCAppController : NSObject {
     lo_address oscPd;
     
@@ -18,10 +25,16 @@
     IBOutlet VCInstrumentView *voxView;
     IBOutlet VCInstrumentView *crowdView;
     
-    IBOutlet NSSlider *orientationIndicator;
+    IBOutlet NSSlider *headIndicator;
+    
+    NSInteger orientation;
+    NSUInteger volumes[4];
+    NSArray *instrumentViews;
 }
 
 - (void)handleGesture:(NSInteger)gestureID;
-- (void)handleHeadOrientation:(NSInteger)angle;
+- (void)handleHeadAngle:(NSInteger)angle;
+- (void)setOrientation:(NSInteger)angle;
+- (void)sendUpdatesToPd;
 
 @end

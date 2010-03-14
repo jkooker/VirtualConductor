@@ -15,4 +15,6 @@
     IBOutlet NSTextField *text;
 }
 
+- (void)setInstrumentLevel:(NSInteger)newLevel;
+
 @end

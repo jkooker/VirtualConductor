@@ -34,7 +34,6 @@
         [self exitFullScreenModeWithOptions:nil];
         [self.window makeFirstResponder:self];
     }
-
 }
 
 - (void)drawRect:(NSRect)rect {
@@ -43,24 +42,26 @@
 
 #pragma mark Event Handling
 
+- (void)keyDown:(NSEvent *)theEvent
+{
+    // stop the beep on keypresses
+}
+
 - (void)keyUp:(NSEvent *)theEvent
 {
     //NSLog(@"keyUp with characters %@!", [theEvent characters]);
     
     if ([[theEvent characters] isEqualToString:@"a"]) {
         [appController handleGesture:1];
-    }
-    if ([[theEvent characters] isEqualToString:@"s"]) {
+    } else if ([[theEvent characters] isEqualToString:@"s"]) {
         [appController handleGesture:2];
-    }
-    if ([[theEvent characters] isEqualToString:@"d"]) {
+    } else if ([[theEvent characters] isEqualToString:@"d"]) {
         [appController handleGesture:3];
-    }
-    if ([[theEvent characters] isEqualToString:@"f"]) {
+    } else if ([[theEvent characters] isEqualToString:@"f"]) {
         [appController handleGesture:4];
+    } else {
+        [super keyUp:theEvent];
     }
-
-    [super keyUp:theEvent];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
@@ -73,7 +74,7 @@
     // Left edge of screen is -45 degrees, right side is 45
     NSInteger angle = (x - width/2)/(width/2) * 45;
     
-    [appController handleHeadOrientation:angle];
+    [appController handleHeadAngle:angle];
     
     [super mouseMoved:theEvent];
 }
