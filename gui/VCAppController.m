@@ -41,7 +41,7 @@
 
 - (void)handleGesture:(NSInteger)gestureID
 {
-    NSLog(@"handleGesture %d", gestureID);
+    //NSLog(@"handleGesture %d", gestureID);
     
     switch (gestureID) {
         case VCGestureVolumeUp:
