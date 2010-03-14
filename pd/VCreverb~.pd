@@ -12,7 +12,7 @@
 #X obj 231 103 * -1;
 #X obj 231 127 + 360;
 #X text 233 179 scaling factor;
-#X obj 177 182 * 0.4;
+#X obj 177 182 * 0.3;
 #X connect 0 0 5 0;
 #X connect 0 0 4 0;
 #X connect 1 0 8 0;

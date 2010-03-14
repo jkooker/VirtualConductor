@@ -1,4 +1,4 @@
-#N canvas 25 22 495 351 10;
+#N canvas 43 449 495 351 10;
 #X obj 37 34 inlet~;
 #X obj 177 37 inlet;
 #X text 37 16 audio signal;
@@ -12,16 +12,18 @@
 #X obj 37 272 lop~ 20000;
 #X obj 176 230 mtof;
 #X obj 175 200 + 130;
-#X obj 175 172 * -40;
 #X text 226 198 top midi note;
+#X floatatom 184 262 10 0 0 0 - - -;
+#X obj 175 172 * -30;
 #X connect 0 0 10 0;
 #X connect 1 0 5 0;
 #X connect 5 0 6 0;
 #X connect 5 1 7 0;
-#X connect 6 0 13 0;
+#X connect 6 0 15 0;
 #X connect 7 0 8 0;
 #X connect 8 0 6 0;
 #X connect 10 0 4 0;
 #X connect 11 0 10 1;
+#X connect 11 0 14 0;
 #X connect 12 0 11 0;
-#X connect 13 0 12 0;
+#X connect 15 0 12 0;
