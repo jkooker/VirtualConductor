@@ -41,22 +41,22 @@
     switch (gestureID) {
         case VCGestureVolumeUp:
             // check if it's maxed
-            if (volumes[0] < 100) {
-                volumes[0] += 20;
-                [[instrumentViews objectAtIndex:0] setInstrumentLevel:volumes[0]];
+            if (volumes[activeInstrumentIndex] < 100) {
+                volumes[activeInstrumentIndex] += 20;
+                [[instrumentViews objectAtIndex:activeInstrumentIndex] setInstrumentLevel:volumes[activeInstrumentIndex]];
             }
             break;
         case VCGestureVolumeDown:
             // check if it's already muted
-            if (volumes[0] > 0) {
-                volumes[0] -= 20;
-                [[instrumentViews objectAtIndex:0] setInstrumentLevel:volumes[0]];
+            if (volumes[activeInstrumentIndex] > 0) {
+                volumes[activeInstrumentIndex] -= 20;
+                [[instrumentViews objectAtIndex:activeInstrumentIndex] setInstrumentLevel:volumes[activeInstrumentIndex]];
             }
             break;
         case VCGestureMute:
-            if (volumes[0] != 0) {
-                volumes[0] = 0;
-                [[instrumentViews objectAtIndex:0] setInstrumentLevel:volumes[0]];
+            if (volumes[activeInstrumentIndex] != 0) {
+                volumes[activeInstrumentIndex] = 0;
+                [[instrumentViews objectAtIndex:activeInstrumentIndex] setInstrumentLevel:volumes[activeInstrumentIndex]];
             }
             break;
         case VCGestureSolo:
