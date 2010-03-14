@@ -13,8 +13,11 @@
     IBOutlet NSImageView *image;
     IBOutlet NSLevelIndicator *level;
     IBOutlet NSTextField *text;
+    
+    BOOL isActive;
 }
 
 - (void)setInstrumentLevel:(NSInteger)newLevel;
+- (void)setActive:(BOOL)newActive;
 
 @end

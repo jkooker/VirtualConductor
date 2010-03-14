@@ -29,7 +29,9 @@
     instrumentOffsets[0] = 0;
     instrumentOffsets[1] = 90;
     instrumentOffsets[2] = 180;
-    instrumentOffsets[3] = 270;    
+    instrumentOffsets[3] = 270;
+    
+    activeInstrumentIndex = 0;
 }
 
 - (void)handleGesture:(NSInteger)gestureID
@@ -61,19 +63,6 @@
         default:
             break;
     }
-    /*
-    if (gestureID == VCGestureVolumeUp) {
-        // check if it's maxed
-        if (volumes[0] != 100) {
-            volumes[0] += 20;
-            [[instrumentViews objectAtIndex:0] setLevel:volumes[0]];
-        }
-    }
-    
-    // Fake gestures into volume controls
-    float newVolume = ((float)gestureID - 1) / 3 * 100;
-    lo_send(oscPd, "/vcon/volume", "if", 1, newVolume);
-    */
 }
 
 - (void)handleHeadAngle:(NSInteger)angle
@@ -96,6 +85,13 @@
     orientation = angle;
 }
 
+- (void)setActiveInstrumentIndex:(NSUInteger)i
+{
+    [[instrumentViews objectAtIndex:activeInstrumentIndex] setActive:NO];
+    activeInstrumentIndex = i;
+    [[instrumentViews objectAtIndex:activeInstrumentIndex] setActive:YES];
+}
+
 - (void)sendUpdatesToPd
 {
     lo_send(oscPd, "/vcon/orientation", "i", orientation);
@@ -111,13 +107,17 @@
     CGFloat center = [[guitarView superview] bounds].size.width / 2;
     
     for (NSUInteger i = 0; i < kInstrumentCount; i++) {
+        VCInstrumentView *iView = [instrumentViews objectAtIndex:i];
+
         // calculate offset position
         CGFloat position = (orientation + instrumentOffsets[i]) % 360;
         if (position > 180) position -= 360; // now [-180, 180]
         
+        // check if active instrument needs to be changed
+        if (position > -45 && position <= 45) [self setActiveInstrumentIndex:i];
+        
         CGFloat newFrameCenter = center + (position/45) * center;
         
-        VCInstrumentView *iView = [instrumentViews objectAtIndex:i];
         CGFloat halfInstrumentViewWidth = [iView bounds].size.width / 2;
         [iView setFrameOrigin:NSMakePoint(newFrameCenter - halfInstrumentViewWidth, [iView frame].origin.y)];
     }

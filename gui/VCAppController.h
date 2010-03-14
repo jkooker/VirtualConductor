@@ -33,6 +33,8 @@ enum VCGestures {
     NSUInteger volumes[kInstrumentCount];
     NSArray *instrumentViews;
     NSInteger instrumentOffsets[kInstrumentCount];
+    
+    NSUInteger activeInstrumentIndex;
 }
 
 - (void)handleGesture:(NSInteger)gestureID;
@@ -40,6 +42,7 @@ enum VCGestures {
 - (void)setOrientation:(NSInteger)angle;
 - (void)sendUpdatesToPd;
 - (void)updateInstrumentPositions;
+- (void)setActiveInstrumentIndex:(NSUInteger)i;
 
 - (IBAction)doOrientation:(id)sender;
 

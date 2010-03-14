@@ -31,4 +31,9 @@
     [level setIntValue:(newLevel / 20)];
 }
 
+- (void)setActive:(BOOL)newActive
+{
+    isActive = newActive;
+}
+
 @end
