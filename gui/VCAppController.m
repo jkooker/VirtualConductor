@@ -112,7 +112,7 @@
     
     for (NSUInteger i = 0; i < kInstrumentCount; i++) {
         // calculate offset position
-        NSInteger position = (orientation + instrumentOffsets[i]) % 360;
+        CGFloat position = (orientation + instrumentOffsets[i]) % 360;
         if (position > 180) position -= 360; // now [-180, 180]
         
         CGFloat newFrameCenter = center + (position/45) * center;
@@ -125,6 +125,7 @@
 
 - (IBAction)doOrientation:(id)sender
 {
+    orientation += 5;
     [self updateInstrumentPositions];
 }
 
