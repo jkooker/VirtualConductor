@@ -2,6 +2,7 @@
 #include <OpenCV/OpenCV.h>
 #include <cassert>
 #include <iostream>
+#include "lo/lo.h"
 
 
 const char  * WINDOW_NAME  = "Face Tracker";
@@ -13,6 +14,8 @@ using namespace std;
 int main (int argc, char * const argv[]) 
 {
     const int scale = 2;
+    lo_address oscHandle = lo_address_new(NULL, "7001");
+    lo_send(oscHandle, "/hello", ""); // make the connection
 
     // locate haar cascade from inside application bundle
     // (this is the mac way to package application resources)

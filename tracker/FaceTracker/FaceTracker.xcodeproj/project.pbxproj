@@ -11,6 +11,7 @@
 		4DBF87310C05731500880673 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF87300C05731500880673 /* haarcascade_frontalface_alt2.xml */; };
 		4DCD35CB0CBD74EF00047988 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCD35CA0CBD74EF00047988 /* OpenCV.framework */; };
 		4DCD35CF0CBD74F500047988 /* OpenCV.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4DCD35CA0CBD74EF00047988 /* OpenCV.framework */; };
+		9B0C6D42115173BC002D771F /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0C6D41115173BC002D771F /* liblo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		4D7DBE590C04A8FF00D8835D /* FaceTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceTracker-Info.plist"; sourceTree = "<group>"; };
 		4DBF87300C05731500880673 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = SOURCE_ROOT; };
 		4DCD35CA0CBD74EF00047988 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCV.framework; path = ../OpenCV.framework; sourceTree = SOURCE_ROOT; };
+		9B0C6D41115173BC002D771F /* liblo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCD35CB0CBD74EF00047988 /* OpenCV.framework in Frameworks */,
+				9B0C6D42115173BC002D771F /* liblo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +89,7 @@
 		4DBF872C0C0572BC00880673 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9B0C6D41115173BC002D771F /* liblo.a */,
 				4DBF87300C05731500880673 /* haarcascade_frontalface_alt2.xml */,
 				4D7DBE590C04A8FF00D8835D /* FaceTracker-Info.plist */,
 			);
@@ -161,6 +165,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
 			name = Debug;
 		};
@@ -176,6 +181,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
 			name = Release;
 		};
@@ -205,6 +211,11 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				INFOPLIST_FILE = "FaceTracker-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Carbon,
@@ -240,6 +251,11 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				INFOPLIST_FILE = "FaceTracker-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Carbon,
