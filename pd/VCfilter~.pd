@@ -14,7 +14,7 @@
 #X obj 175 200 + 130;
 #X text 226 198 top midi note;
 #X floatatom 184 262 10 0 0 0 - - -;
-#X obj 175 172 * -30;
+#X obj 175 172 * -20;
 #X connect 0 0 10 0;
 #X connect 1 0 5 0;
 #X connect 5 0 6 0;
