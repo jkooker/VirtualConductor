@@ -41,6 +41,7 @@ enum VCGestures {
 
 - (void)handleGesture:(NSInteger)gestureID;
 - (void)handleHeadAngle:(NSInteger)angle;
+- (void)getHeadAngle;
 - (void)sendUpdatesToPd;
 - (void)updateInstrumentPositions;
 - (void)setActiveInstrumentIndex:(NSUInteger)i;

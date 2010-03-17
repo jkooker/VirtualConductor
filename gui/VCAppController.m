@@ -20,15 +20,20 @@ int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
 		 void *data, void *user_data);
 
 
+int receivedHeadAngle = 0;
+VCAppController *sharedController = nil;
+
 @implementation VCAppController
 
 - (void)awakeFromNib
 {
+    sharedController = self;
+    
     // initialize OSC sending to localhost:7000
     oscPd = lo_address_new(NULL, "7000");
     lo_send(oscPd, "/hello", ""); // make the connection
     
-    // initialize OSC server
+    // initialize OSC server on 7001
     st = lo_server_thread_new("7001", error_handler);
     lo_server_thread_add_method(st, NULL, NULL, generic_handler, NULL);
     lo_server_thread_add_method(st, "/vcon/head", "i", head_handler, NULL);
@@ -94,6 +99,11 @@ int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
     headAngle = angle;
 }
 
+- (void)getHeadAngle
+{
+    [self handleHeadAngle:receivedHeadAngle];
+}
+
 - (void)setActiveInstrumentIndex:(NSUInteger)i
 {
     [[instrumentViews objectAtIndex:activeInstrumentIndex] setActive:NO];
@@ -146,6 +156,7 @@ int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
 
 - (IBAction)doOrientation:(id)sender
 {
+    NSLog(@"doOrientation");
     orientation += 5;
     [self updateInstrumentPositions];
 }
@@ -184,6 +195,9 @@ int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
 {
     printf("%s <- i:%d\n\n", path, argv[0]->i);
     fflush(stdout);
+    
+    receivedHeadAngle = argv[0]->i;
+    [sharedController performSelectorOnMainThread:@selector(getHeadAngle) withObject:nil waitUntilDone:NO];
 
     return 0;
 }
