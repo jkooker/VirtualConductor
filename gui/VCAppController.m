@@ -11,6 +11,15 @@
 #define kMaxRotationalSpeed 180 // in degrees/sec
 #define kTimerInterval 0.1 // in sec
 
+void error_handler(int num, const char *m, const char *path);
+
+int generic_handler(const char *path, const char *types, lo_arg **argv,
+		    int argc, void *data, void *user_data);
+
+int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
+		 void *data, void *user_data);
+
+
 @implementation VCAppController
 
 - (void)awakeFromNib
@@ -18,6 +27,12 @@
     // initialize OSC sending to localhost:7000
     oscPd = lo_address_new(NULL, "7000");
     lo_send(oscPd, "/hello", ""); // make the connection
+    
+    // initialize OSC server
+    st = lo_server_thread_new("7001", error_handler);
+    lo_server_thread_add_method(st, NULL, NULL, generic_handler, NULL);
+    lo_server_thread_add_method(st, "/vcon/head", "i", head_handler, NULL);
+    lo_server_thread_start(st);
     
     // initialize state variables
     headAngle = 0;
@@ -136,3 +151,42 @@
 }
 
 @end
+
+#pragma mark OSC Handler Functions
+
+void error_handler(int num, const char *msg, const char *path)
+{
+    printf("liblo server error %d in path %s: %s\n", num, path, msg);
+    fflush(stdout);
+}
+
+/* catch any incoming messages and display them. returning 1 means that the
+ * message has not been fully handled and the server should try other methods */
+int generic_handler(const char *path, const char *types, lo_arg **argv,
+		    int argc, void *data, void *user_data)
+{
+    int i;
+
+    printf("path: <%s>\n", path);
+    for (i=0; i<argc; i++) {
+        printf("arg %d '%c' ", i, types[i]);
+        lo_arg_pp(types[i], argv[i]);
+        printf("\n");
+    }
+    printf("\n");
+    fflush(stdout);
+
+    return 1;
+}
+
+int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
+		 void *data, void *user_data)
+{
+    printf("%s <- i:%d\n\n", path, argv[0]->i);
+    fflush(stdout);
+
+    return 0;
+}
+
+
+

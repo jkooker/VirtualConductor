@@ -21,6 +21,7 @@ enum VCGestures {
 
 @interface VCAppController : NSObject {
     lo_address oscPd;
+    lo_server_thread st;
         
     IBOutlet VCInstrumentView *guitarView;
     IBOutlet VCInstrumentView *drumsView;
