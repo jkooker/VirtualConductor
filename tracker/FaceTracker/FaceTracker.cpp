@@ -16,6 +16,7 @@ int main (int argc, char * const argv[])
     const int scale = 2;
     lo_address oscHandle = lo_address_new(NULL, "7001");
     lo_send(oscHandle, "/hello", ""); // make the connection
+    lo_send(oscHandle, "/vcon/head", "i", 7); // test handler
 
     // locate haar cascade from inside application bundle
     // (this is the mac way to package application resources)
@@ -47,16 +48,25 @@ int main (int argc, char * const argv[])
     IplImage *  current_frame = cvQueryFrame (camera);
     IplImage *  draw_image    = cvCreateImage(cvSize (current_frame->width, current_frame->height), IPL_DEPTH_8U, 3);
     IplImage *  gray_image    = cvCreateImage(cvSize (current_frame->width, current_frame->height), IPL_DEPTH_8U, 1);
-    IplImage *  small_image   = cvCreateImage(cvSize (current_frame->width / scale, current_frame->height / scale), IPL_DEPTH_8U, 1);
-    assert (current_frame && gray_image && draw_image);
+    //IplImage *  small_image   = cvCreateImage(cvSize (current_frame->width / scale, current_frame->height / scale), IPL_DEPTH_8U, 1);
+    IplImage *  hsv_image     = cvCreateImage(cvSize (current_frame->width, current_frame->height), IPL_DEPTH_8U, 3);
+    IplImage *  thresh_image  = cvCreateImage(cvSize (current_frame->width, current_frame->height), IPL_DEPTH_8U, 1);    
+    assert (current_frame && gray_image && draw_image && hsv_image && thresh_image);
+    
+    CvScalar hsv_min = cvScalar(15, 128, 128, 0);
+    CvScalar hsv_max = cvScalar(25, 256, 256, 0);
     
     // as long as there are images ...
     while (current_frame = cvQueryFrame (camera))
     {
         // convert to gray and downsize
         cvCvtColor (current_frame, gray_image, CV_BGR2GRAY);
-        cvResize (gray_image, small_image, CV_INTER_LINEAR);
+        //cvResize (gray_image, small_image, CV_INTER_LINEAR);
+        cvCvtColor(current_frame, hsv_image, CV_BGR2HSV);
         
+        cvInRangeS(hsv_image, hsv_min, hsv_max, thresh_image);
+        
+#if 0
         // detect faces
         CvSeq* faces = cvHaarDetectObjects (small_image, cascade, storage,
                                             1.1, 2, CV_HAAR_DO_CANNY_PRUNING,
@@ -74,9 +84,23 @@ int main (int argc, char * const argv[])
             radius = cvRound((r->width + r->height)*0.25*scale);
             cvCircle (draw_image, center, radius, CV_RGB(0,255,0), 3, 8, 0 );
         }
+#endif
+
+        // add circles
+        cvSmooth( thresh_image, thresh_image, CV_GAUSSIAN, 9, 9 );
+        //CvSeq* circles = cvHoughCircles( gray_image, storage, CV_HOUGH_GRADIENT, 2, gray_image->height/4, 200, 100 );
+        CvSeq* circles = cvHoughCircles(thresh_image, storage, CV_HOUGH_GRADIENT, 2, thresh_image->height/4, 100, 40, 20, 200);
+        
+        for(int i = 0; i < circles->total; i++ )
+        {
+            printf("found circles!\n");
+            float* p = (float*)cvGetSeqElem( circles, i );
+            cvCircle(current_frame, cvPoint(cvRound(p[0]),cvRound(p[1])), cvRound(p[2]), CV_RGB(255,0,0), 3, 8, 0 );
+        }
+
         
         // just show the image
-        cvShowImage (WINDOW_NAME, draw_image);
+        cvShowImage (WINDOW_NAME, current_frame);
         
         // wait a tenth of a second for keypress and window drawing
         int key = cvWaitKey (100);
