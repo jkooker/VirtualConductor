@@ -13,10 +13,9 @@ using namespace std;
 
 int main (int argc, char * const argv[]) 
 {
-    const int scale = 2;
+    //const int scale = 2;
     lo_address oscHandle = lo_address_new(NULL, "7001");
     lo_send(oscHandle, "/hello", ""); // make the connection
-    lo_send(oscHandle, "/vcon/head", "i", 7); // test handler
 
     // locate haar cascade from inside application bundle
     // (this is the mac way to package application resources)
@@ -93,9 +92,13 @@ int main (int argc, char * const argv[])
         
         for(int i = 0; i < circles->total; i++ )
         {
-            printf("found circles!\n");
             float* p = (float*)cvGetSeqElem( circles, i );
+            printf("Ball! x=%f y=%f r=%f\n", p[0], p[1], p[2]);
             cvCircle(current_frame, cvPoint(cvRound(p[0]),cvRound(p[1])), cvRound(p[2]), CV_RGB(255,0,0), 3, 8, 0 );
+            
+            // send OSC message with "head angle" = ball position normalized to [-45,45]
+            int angle = cvRound((p[0] - (current_frame->width / 2))/(current_frame->width / 2) * (-45));
+            lo_send(oscHandle, "/vcon/head", "i", angle);
         }
 
         
