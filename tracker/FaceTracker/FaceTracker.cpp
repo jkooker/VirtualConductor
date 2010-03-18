@@ -89,7 +89,7 @@ int main (int argc, char * const argv[])
         // add circles
         cvSmooth( thresh_image, thresh_image, CV_GAUSSIAN, 9, 9 );
         //CvSeq* circles = cvHoughCircles( gray_image, storage, CV_HOUGH_GRADIENT, 2, gray_image->height/4, 200, 100 );
-        CvSeq* circles = cvHoughCircles(thresh_image, storage, CV_HOUGH_GRADIENT, 2, thresh_image->height/4, 100, 40, 20, 200);
+        CvSeq* circles = cvHoughCircles(thresh_image, storage, CV_HOUGH_GRADIENT, 2, thresh_image->height/4, 100, 40, 10, 200);
         
         for(int i = 0; i < circles->total; i++ )
         {
