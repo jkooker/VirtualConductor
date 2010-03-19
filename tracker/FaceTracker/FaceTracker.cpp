@@ -86,6 +86,13 @@ int main (int argc, char * const argv[])
         }
 #endif
 
+        // draw boxes around gesture areas
+        int boxLength = current_frame->height / 4;
+        cvRectangle(current_frame, cvPoint((current_frame->width / 2) - (boxLength / 2), 0), cvPoint((current_frame->width / 2) + (boxLength / 2), boxLength), CV_RGB(0,255,0), 3, 8, 0);
+        cvRectangle(current_frame, cvPoint((current_frame->width / 2) - (boxLength / 2), current_frame->height), cvPoint((current_frame->width / 2) + (boxLength / 2), current_frame->height - boxLength), CV_RGB(0,255,0), 3, 8, 0);
+
+
+
         // add circles
         cvSmooth( thresh_image, thresh_image, CV_GAUSSIAN, 9, 9 );
         //CvSeq* circles = cvHoughCircles( gray_image, storage, CV_HOUGH_GRADIENT, 2, gray_image->height/4, 200, 100 );
@@ -101,7 +108,7 @@ int main (int argc, char * const argv[])
             int angle = cvRound((p[0] - (current_frame->width / 2))/(current_frame->width / 2) * (-45));
             lo_send(oscHandle, "/vcon/head", "i", angle);
         }
-
+        
         
         // show the flipped version of the image, for mirror effect
         cvFlip (current_frame, draw_image, 1);
