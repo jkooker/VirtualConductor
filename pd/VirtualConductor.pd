@@ -1,5 +1,5 @@
 #N canvas 643 35 636 437 10;
-#N canvas 132 252 667 461 oscrouting 1;
+#N canvas 132 252 427 409 oscrouting 1;
 #X obj 55 80 print osc;
 #X obj 158 170 print osc-other;
 #X text 21 21 receives and prints OSC messages from GUI app;
