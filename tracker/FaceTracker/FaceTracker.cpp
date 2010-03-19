@@ -56,6 +56,9 @@ int main (int argc, char * const argv[])
     CvScalar hsv_min = cvScalar(12, 160, 128, 0);
     CvScalar hsv_max = cvScalar(25, 256, 256, 0);
     
+    // for debouncing gestures
+    bool lastPointWasNotAGesture = true;
+    
     // as long as there are images ...
     while (current_frame = cvQueryFrame (camera))
     {
@@ -109,18 +112,29 @@ int main (int argc, char * const argv[])
             int angle = cvRound((p[0] - (current_frame->width / 2))/(current_frame->width / 2) * (-45));
             lo_send(oscHandle, "/vcon/head", "i", angle);
             
-            // test if ball is in gesture area
+            // test if ball is in gesture area, with debouncing
             if (p[0] > boxLeft && p[0] < boxRight) {
                 if (p[1] < boxLength) {
-                    // send volume up gesture
-                    printf("vol up!\n");
-                    lo_send(oscHandle, "/vcon/gesture", "i", 1);
+                    if (lastPointWasNotAGesture) {
+                        // send volume up gesture
+                        printf("vol up!\n");
+                        lo_send(oscHandle, "/vcon/gesture", "i", 1);
+                        lastPointWasNotAGesture = false;
+                    }
                 } else if (p[1] > current_frame->height - boxLength) {
-                    // send volume down gesture
-                    printf("vol down!\n");
-                    lo_send(oscHandle, "/vcon/gesture", "i", 2);
+                    if (lastPointWasNotAGesture) {
+                        // send volume down gesture
+                        printf("vol down!\n");
+                        lo_send(oscHandle, "/vcon/gesture", "i", 2);
+                        lastPointWasNotAGesture = false;
+                    }
+                } else {
+                    lastPointWasNotAGesture = true;
                 }
+            } else {
+                lastPointWasNotAGesture = true;
             }
+
         }
         
         // show the flipped version of the image, for mirror effect
