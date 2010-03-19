@@ -88,10 +88,11 @@ int main (int argc, char * const argv[])
 
         // draw boxes around gesture areas
         int boxLength = current_frame->height / 4;
-        cvRectangle(current_frame, cvPoint((current_frame->width / 2) - (boxLength / 2), 0), cvPoint((current_frame->width / 2) + (boxLength / 2), boxLength), CV_RGB(0,255,0), 3, 8, 0);
-        cvRectangle(current_frame, cvPoint((current_frame->width / 2) - (boxLength / 2), current_frame->height), cvPoint((current_frame->width / 2) + (boxLength / 2), current_frame->height - boxLength), CV_RGB(0,255,0), 3, 8, 0);
-
-
+        int boxLeft = (current_frame->width / 2) - (boxLength / 2);
+        int boxRight = (current_frame->width / 2) + (boxLength / 2);
+        
+        cvRectangle(current_frame, cvPoint(boxLeft, 0), cvPoint(boxRight, boxLength), CV_RGB(0,255,0), 3, 8, 0);
+        cvRectangle(current_frame, cvPoint(boxLeft, current_frame->height), cvPoint(boxRight, current_frame->height - boxLength), CV_RGB(0,255,0), 3, 8, 0);
 
         // add circles
         cvSmooth( thresh_image, thresh_image, CV_GAUSSIAN, 9, 9 );
@@ -107,8 +108,20 @@ int main (int argc, char * const argv[])
             // send OSC message with "head angle" = ball position normalized to [-45,45]
             int angle = cvRound((p[0] - (current_frame->width / 2))/(current_frame->width / 2) * (-45));
             lo_send(oscHandle, "/vcon/head", "i", angle);
+            
+            // test if ball is in gesture area
+            if (p[0] > boxLeft && p[0] < boxRight) {
+                if (p[1] < boxLength) {
+                    // send volume up gesture
+                    printf("vol up!\n");
+                    lo_send(oscHandle, "/vcon/gesture", "i", 1);
+                } else if (p[1] > current_frame->height - boxLength) {
+                    // send volume down gesture
+                    printf("vol down!\n");
+                    lo_send(oscHandle, "/vcon/gesture", "i", 2);
+                }
+            }
         }
-        
         
         // show the flipped version of the image, for mirror effect
         cvFlip (current_frame, draw_image, 1);

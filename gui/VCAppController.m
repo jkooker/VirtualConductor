@@ -19,8 +19,12 @@ int generic_handler(const char *path, const char *types, lo_arg **argv,
 int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
 		 void *data, void *user_data);
 
+int gesture_handler(const char *path, const char *types, lo_arg **argv, int argc,
+		 void *data, void *user_data);
+
 
 int receivedHeadAngle = 0;
+int receivedGesture = 0;
 VCAppController *sharedController = nil;
 
 @implementation VCAppController
@@ -37,6 +41,7 @@ VCAppController *sharedController = nil;
     st = lo_server_thread_new("7001", error_handler);
     lo_server_thread_add_method(st, NULL, NULL, generic_handler, NULL);
     lo_server_thread_add_method(st, "/vcon/head", "i", head_handler, NULL);
+    lo_server_thread_add_method(st, "/vcon/gesture", "i", gesture_handler, NULL);
     lo_server_thread_start(st);
     
     // initialize state variables
@@ -88,6 +93,12 @@ VCAppController *sharedController = nil;
         default:
             break;
     }
+}
+
+- (void)getGesture
+{
+    [self handleGesture:receivedGesture];
+    receivedGesture = 0;
 }
 
 - (void)handleHeadAngle:(NSInteger)angle
@@ -224,5 +235,16 @@ int head_handler(const char *path, const char *types, lo_arg **argv, int argc,
     return 0;
 }
 
+int gesture_handler(const char *path, const char *types, lo_arg **argv, int argc,
+		 void *data, void *user_data)
+{
+    printf("%s <- i:%d\n\n", path, argv[0]->i);
+    fflush(stdout);
+    
+    receivedGesture = argv[0]->i;
+    [sharedController performSelectorOnMainThread:@selector(getGesture) withObject:nil waitUntilDone:NO];
+
+    return 0;
+}
 
 
