@@ -103,8 +103,9 @@ int main (int argc, char * const argv[])
         }
 
         
-        // just show the image
-        cvShowImage (WINDOW_NAME, current_frame);
+        // show the flipped version of the image, for mirror effect
+        cvFlip (current_frame, draw_image, 1);
+        cvShowImage (WINDOW_NAME, draw_image);
         
         // wait a tenth of a second for keypress and window drawing
         int key = cvWaitKey (100);
