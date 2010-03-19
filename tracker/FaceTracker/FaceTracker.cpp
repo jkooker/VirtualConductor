@@ -52,7 +52,8 @@ int main (int argc, char * const argv[])
     IplImage *  thresh_image  = cvCreateImage(cvSize (current_frame->width, current_frame->height), IPL_DEPTH_8U, 1);    
     assert (current_frame && gray_image && draw_image && hsv_image && thresh_image);
     
-    CvScalar hsv_min = cvScalar(15, 128, 128, 0);
+    // H=[24,50]deg S=[.5,1] V=[.5,1]
+    CvScalar hsv_min = cvScalar(12, 160, 128, 0);
     CvScalar hsv_max = cvScalar(25, 256, 256, 0);
     
     // as long as there are images ...
