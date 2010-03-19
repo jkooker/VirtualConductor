@@ -43,9 +43,9 @@ VCAppController *sharedController = nil;
     headAngle = 0;
     orientation = 0;
     volumes[0] = 100;
-    volumes[1] = 100;
-    volumes[2] = 100;
-    volumes[3] = 100;
+    volumes[1] = 0;
+    volumes[2] = 0;
+    volumes[3] = 0;
     
     instrumentViews = [[NSArray alloc] initWithObjects:guitarView, voxView, drumsView, crowdView, nil];
     

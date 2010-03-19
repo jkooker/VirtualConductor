@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="533"/>
+			<integer value="371"/>
 			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -312,7 +312,7 @@
 							<int key="NSvFlags">274</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSProgressIndicator" id="711814117">
+								<object class="NSProgressIndicator" id="845935165">
 									<reference key="NSNextResponder" ref="71347632"/>
 									<int key="NSvFlags">1292</int>
 									<object class="NSPSMatrix" key="NSDrawMatrix"/>
@@ -488,7 +488,6 @@
 												<int key="NSCellFlags">-2147353088</int>
 												<int key="NSCellFlags2">0</int>
 												<reference key="NSControlView" ref="602718291"/>
-												<double key="NSValue">5</double>
 												<double key="NSMaxValue">5</double>
 												<double key="NSWarningValue">2</double>
 												<double key="NSCriticalValue">2</double>
@@ -566,7 +565,6 @@
 												<int key="NSCellFlags">-2147353088</int>
 												<int key="NSCellFlags2">0</int>
 												<reference key="NSControlView" ref="147399573"/>
-												<double key="NSValue">5</double>
 												<double key="NSMaxValue">5</double>
 												<double key="NSWarningValue">2</double>
 												<double key="NSCriticalValue">2</double>
@@ -644,7 +642,6 @@
 												<int key="NSCellFlags">-2147353088</int>
 												<int key="NSCellFlags2">0</int>
 												<reference key="NSControlView" ref="573171751"/>
-												<double key="NSValue">5</double>
 												<double key="NSMaxValue">5</double>
 												<double key="NSWarningValue">2</double>
 												<double key="NSCriticalValue">2</double>
@@ -981,7 +978,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">spinner</string>
 						<reference key="source" ref="38523275"/>
-						<reference key="destination" ref="711814117"/>
+						<reference key="destination" ref="845935165"/>
 					</object>
 					<int key="connectionID">602</int>
 				</object>
@@ -1266,7 +1263,7 @@
 							<reference ref="588651481"/>
 							<reference ref="541638333"/>
 							<reference ref="618562678"/>
-							<reference ref="711814117"/>
+							<reference ref="845935165"/>
 						</object>
 						<reference key="parent" ref="439893737"/>
 					</object>
@@ -1522,7 +1519,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">601</int>
-						<reference key="object" ref="711814117"/>
+						<reference key="object" ref="845935165"/>
 						<reference key="parent" ref="71347632"/>
 					</object>
 				</object>
