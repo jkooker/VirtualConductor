@@ -8,6 +8,7 @@
 
 #import "VCMainView.h"
 
+#define MOUSE_CONTROL 0
 
 @implementation VCMainView
 
@@ -64,6 +65,7 @@
     }
 }
 
+#if MOUSE_CONTROL
 - (void)mouseMoved:(NSEvent *)theEvent
 {
     //NSLog(@"mouseMoved to (%.0f, %.0f)!", [NSEvent mouseLocation].x, [NSEvent mouseLocation].y);
@@ -78,5 +80,6 @@
     
     [super mouseMoved:theEvent];
 }
+#endif
 
 @end
