@@ -5,6 +5,8 @@ MESSAGES RECEIVED BY Pd
 
 /vcon/orientation [angle (deg)]
 /vcon/volume [channel index] [level (percent)]
+/vcon/start
+/vcon/stop
 
 EXAMPLES
 

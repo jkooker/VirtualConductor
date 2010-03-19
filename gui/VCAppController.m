@@ -154,6 +154,28 @@ VCAppController *sharedController = nil;
     [self sendUpdatesToPd];
 }
 
+- (IBAction)startStop:(id)sender
+{
+    if (!isStarted) {
+        // send start message
+        lo_send(oscPd, "/vcon/start", "");
+        [spinner startAnimation:self];
+        [startStopButton setTitle:@"Stop"];
+        isStarted = YES;
+        // wait 2 sec and stop the spinner
+        NSInvocation *spinnerStop = [NSInvocation invocationWithMethodSignature:[spinner methodSignatureForSelector:@selector(stopAnimation:)]];
+        [spinnerStop setTarget:spinner];
+        [spinnerStop setSelector:@selector(stopAnimation:)];
+        [spinnerStop setArgument:self atIndex:2];
+        [NSTimer scheduledTimerWithTimeInterval:2 invocation:spinnerStop repeats:NO];
+    } else {
+        lo_send(oscPd, "/vcon/stop", "");
+        [startStopButton setTitle:@"Start"];
+        isStarted = NO;
+    }
+
+}
+
 - (IBAction)doOrientation:(id)sender
 {
     NSLog(@"doOrientation");

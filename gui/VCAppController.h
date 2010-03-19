@@ -29,6 +29,8 @@ enum VCGestures {
     IBOutlet VCInstrumentView *crowdView;
     
     IBOutlet NSSlider *headIndicator;
+    IBOutlet NSProgressIndicator *spinner;
+    IBOutlet NSButton *startStopButton;
     
     NSInteger headAngle;
     NSInteger orientation;
@@ -37,6 +39,8 @@ enum VCGestures {
     NSInteger instrumentOffsets[kInstrumentCount];
     
     NSUInteger activeInstrumentIndex;
+    
+    BOOL isStarted;
 }
 
 - (void)handleGesture:(NSInteger)gestureID;
@@ -47,6 +51,7 @@ enum VCGestures {
 - (void)setActiveInstrumentIndex:(NSUInteger)i;
 - (void)updateWorld:(NSTimer*)theTimer;
 
+- (IBAction)startStop:(id)sender;
 - (IBAction)doOrientation:(id)sender;
 
 @end

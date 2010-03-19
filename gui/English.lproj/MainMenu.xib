@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="533"/>
 			<integer value="29"/>
-			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -312,6 +312,15 @@
 							<int key="NSvFlags">274</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSProgressIndicator" id="711814117">
+									<reference key="NSNextResponder" ref="71347632"/>
+									<int key="NSvFlags">1292</int>
+									<object class="NSPSMatrix" key="NSDrawMatrix"/>
+									<string key="NSFrame">{{614, 22}, {16, 16}}</string>
+									<reference key="NSSuperview" ref="71347632"/>
+									<int key="NSpiFlags">28938</int>
+									<double key="NSMaxValue">100</double>
+								</object>
 								<object class="NSSlider" id="623173840">
 									<reference key="NSNextResponder" ref="71347632"/>
 									<int key="NSvFlags">290</int>
@@ -969,12 +978,28 @@
 					<int key="connectionID">597</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">spinner</string>
+						<reference key="source" ref="38523275"/>
+						<reference key="destination" ref="711814117"/>
+					</object>
+					<int key="connectionID">602</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">doOrientation:</string>
+						<string key="label">startStop:</string>
 						<reference key="source" ref="38523275"/>
 						<reference key="destination" ref="381618699"/>
 					</object>
-					<int key="connectionID">599</int>
+					<int key="connectionID">603</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">startStopButton</string>
+						<reference key="source" ref="38523275"/>
+						<reference key="destination" ref="381618699"/>
+					</object>
+					<int key="connectionID">604</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1241,6 +1266,7 @@
 							<reference ref="588651481"/>
 							<reference ref="541638333"/>
 							<reference ref="618562678"/>
+							<reference ref="711814117"/>
 						</object>
 						<reference key="parent" ref="439893737"/>
 					</object>
@@ -1494,6 +1520,11 @@
 						<reference key="object" ref="769583748"/>
 						<reference key="parent" ref="623173840"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">601</int>
+						<reference key="object" ref="711814117"/>
+						<reference key="parent" ref="71347632"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1614,6 +1645,7 @@
 					<string>586.IBPluginDependency</string>
 					<string>594.IBPluginDependency</string>
 					<string>595.IBPluginDependency</string>
+					<string>601.IBPluginDependency</string>
 					<string>73.IBPluginDependency</string>
 					<string>73.ImportedFromIB2</string>
 					<string>81.IBEditorWindowLastContentRect</string>
@@ -1742,6 +1774,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{373, 813}, {115, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1769,7 +1802,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">599</int>
+			<int key="maxID">604</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1778,8 +1811,17 @@
 					<string key="className">VCAppController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">doOrientation:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>doOrientation:</string>
+							<string>startStop:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1789,6 +1831,8 @@
 							<string>drumsView</string>
 							<string>guitarView</string>
 							<string>headIndicator</string>
+							<string>spinner</string>
+							<string>startStopButton</string>
 							<string>voxView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1797,6 +1841,8 @@
 							<string>VCInstrumentView</string>
 							<string>VCInstrumentView</string>
 							<string>NSSlider</string>
+							<string>NSProgressIndicator</string>
+							<string>NSButton</string>
 							<string>VCInstrumentView</string>
 						</object>
 					</object>
@@ -2245,6 +2291,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSURLDownload.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSProgressIndicator</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSProgressIndicator.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
