@@ -5,7 +5,7 @@
 #include "lo/lo.h"
 
 
-const char  * WINDOW_NAME  = "Face Tracker";
+const char  * WINDOW_NAME  = "Virtual Conductor Tracker";
 const CFIndex CASCADE_NAME_LEN = 2048;
       char    CASCADE_NAME[CASCADE_NAME_LEN] = "haarcascade_frontalface_alt2.xml"; // this is a dummy
 

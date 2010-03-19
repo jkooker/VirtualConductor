@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* FaceTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceTracker.cpp; sourceTree = "<group>"; };
 		4D4CDBCC0C0630060001A8A2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = ../README.txt; sourceTree = SOURCE_ROOT; };
-		4D7DBE570C04A8FF00D8835D /* FaceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D7DBE570C04A8FF00D8835D /* VCTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7DBE590C04A8FF00D8835D /* FaceTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceTracker-Info.plist"; sourceTree = "<group>"; };
 		4DBF87300C05731500880673 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = SOURCE_ROOT; };
 		4DCD35CA0CBD74EF00047988 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCV.framework; path = ../OpenCV.framework; sourceTree = SOURCE_ROOT; };
@@ -73,7 +73,7 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D7DBE570C04A8FF00D8835D /* FaceTracker.app */,
+				4D7DBE570C04A8FF00D8835D /* VCTracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,7 +114,7 @@
 			);
 			name = FaceTracker;
 			productName = FaceTracker;
-			productReference = 4D7DBE570C04A8FF00D8835D /* FaceTracker.app */;
+			productReference = 4D7DBE570C04A8FF00D8835D /* VCTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +221,7 @@
 					Carbon,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = FaceTracker;
+				PRODUCT_NAME = VCTracker;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -261,7 +261,7 @@
 					Carbon,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = FaceTracker;
+				PRODUCT_NAME = VCTracker;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
